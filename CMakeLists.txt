@@ -3,9 +3,17 @@ cmake_minimum_required(VERSION 3.6)
 set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 set(CMAKE_SYSTEM_NAME Generic)
 
+# tool chain
+set(CMAKE_C_COMPILER   arm-none-eabi-gcc)
+set(CMAKE_ASM_COMPILER arm-none-eabi-gcc)
+set(CMAKE_CXX_COMPILER arm-none-eabi-g++)
+set(CMAKE_EXE_LINKER   arm-none-eabi-g++)
+set(OBJCOPY            arm-none-eabi-objcopy)
+set(SIZE               arm-none-eabi-size)
+
+# project
 project(F407_CMake)
 
-# product
 set(ELF_FILE ${PROJECT_NAME}.elf)
 set(HEX_FILE ${PROJECT_NAME}.hex)
 set(BIN_FILE ${PROJECT_NAME}.bin)
@@ -16,14 +24,6 @@ set(CPU       cortex-m4)
 set(FPU       -mfpu=fpv4-sp-d16)
 set(FLOAT_ABI -mfloat-abi=hard)
 set(LDSCRIPT  STM32F407VGTx_FLASH.ld)
-
-# compiler
-set(CMAKE_C_COMPILER   arm-none-eabi-gcc)
-set(CMAKE_ASM_COMPILER arm-none-eabi-gcc)
-set(CMAKE_CXX_COMPILER arm-none-eabi-g++)
-set(CMAKE_EXE_LINKER   arm-none-eabi-g++)
-set(OBJCOPY            arm-none-eabi-objcopy)
-set(SIZE               arm-none-eabi-size)
 
 # compiler options
 add_compile_options(-O2)
